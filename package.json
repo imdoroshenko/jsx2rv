@@ -2,8 +2,13 @@
     "name": "jsx2rv",
     "version": "0.0.1",
     "author": "Ivan Doroshenko <i.m.doroshenko@gmail.com>",
-    "main": "./jsx2rv.js",
+    "main": "./main.js",
     "dependencies": {
-        "xmldom": ">= 0.1.16"
+        "xmldom": ">= 0.1.16",
+        "through2": "^0.4.1"
+    },
+    "devDependencies": {
+        "gulp": "~3.8.1",
+        "gulp-util": "^2.2.14"
     }
 }

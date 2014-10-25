@@ -1,5 +1,5 @@
 var DOMParser = require('xmldom').DOMParser;
-console.log(DOMParser);
+
 var JSX2RV = {
     rvPattern : '%ref%RV.Node(\'%name%\'%params%%embedding%)',
     componentPattern : '%ref%new %name%(%params%)',
@@ -12,6 +12,7 @@ var JSX2RV = {
         }
         return extracted;
     },
+    rvRE : /<RV>([\s\S]*?)<\/RV>/g,
     isExpressionRE: /^[\s\t\r]*\{.+\}[\s\t\r]*$/,
     notEmptyRE: /[^\s\t\n\r]/,
     removeBracesRE: /[\{\}]/g,
@@ -109,10 +110,15 @@ var JSX2RV = {
         }
         return this._parseNode(dom, embedding, depth);
     },
-    parseString: function (str) {
+    parseJSX: function (str) {
         var parser = new DOMParser(),
             dom = parser.parseFromString(str, 'text/xml');
         return this._parse(dom, -1);
+    },
+    parseFileContent: function (content) {
+        return content.replace(this.rvRE, function (match, p1) {
+            return this.parseJSX(p1);
+        }.bind(this));
     }
 };
 
