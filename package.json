@@ -2,6 +2,7 @@
     "name": "jsx2rv",
     "version": "0.0.1",
     "author": "Ivan Doroshenko <i.m.doroshenko@gmail.com>",
+    "main": "./jsx2rv.js",
     "dependencies": {
         "xmldom": ">= 0.1.16"
     }
