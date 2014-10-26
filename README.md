@@ -73,7 +73,7 @@ var UserProfileView = function (props) {
 };
 ```
 
-#compoled/profile.js source
+#compiled/profile.js source
 ```js
 var UserProfileView = function (props) {
     RV.extend(this, RV.View);
