@@ -23,7 +23,7 @@ var UserProfileView = function (props) {
     RV.extend(this, RV.View);
 
     var CustomComponent = function(params) {
-        var h3 = <RV><h3>{'Hello' + params.title}</h3></RV>;
+        var h3 = <RV><h3>{'Hello, ' + params.title}</h3></RV>;
         return h3;
     };
     
@@ -79,7 +79,7 @@ var UserProfileView = function (props) {
     RV.extend(this, RV.View);
 
     var CustomComponent = function(params) {
-        var h3 = RV.Node('h3', 'Hello' + params.title);
+        var h3 = RV.Node('h3', 'Hello, ' + params.title);
         return h3;
     };
 
