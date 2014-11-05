@@ -2,7 +2,7 @@ var DOMParser = require('xmldom').DOMParser;
 
 var JSX2RV = {
     rvPattern : '%ref%RV.Node(\'%name%\'%params%%embedding%)',
-    componentPattern : '%ref%new %name%(%params%)',
+    componentPattern : '%ref%new %name%(%params%%embedding%)',
     _extractAtributes: function (el) {
         var attributes = el.attributes,
             extracted = {};
@@ -38,21 +38,27 @@ var JSX2RV = {
             : '';
     },
     _createRV: function (name, params, ref, embedding, component) {
-        if (params = this._parseParams(params)) {
-            params = (component
-                ? ''
-                : ', ')
-            + params;
-        }
         if (ref) {
             ref = 'this.refs.' + ref + ' = ';
         } else {
             ref = '';
         }
-        if (!component && Array.isArray(embedding) && embedding.length) {
-            embedding = ', ' + embedding.join(', ');
+        if (Array.isArray(embedding) && embedding.length) {
+            if (component) {
+                embedding = ', [' + embedding.join(', ') + ']';
+            } else {
+                embedding = ', ' + embedding.join(', ');
+            }
         } else {
             embedding = '';
+        }
+        if (params = this._parseParams(params)) {
+            params = (component
+                ? ''
+                : ', ')
+            + params;
+        } else if(!params && component && embedding){
+            params = 'void(0)';
         }
         return (component
             ? this.componentPattern
