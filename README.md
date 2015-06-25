@@ -1,7 +1,7 @@
 jsx2rv
 ======
 
-JSX to RV compiler
+JSX to RV compiler. This is tool for my small handmade framework RV (Rich View). It's compile JSX code to RV notation. 
 
 #Example
 ##gulpfile.js
